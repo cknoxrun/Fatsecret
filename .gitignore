@@ -4,4 +4,6 @@ keys.txt
 Gemfile.lock
 pkg/*
 coverage/*
-.DS_STORE
+.DS_STOREvendor/ruby
+vendor/ruby
+vendor/cache
