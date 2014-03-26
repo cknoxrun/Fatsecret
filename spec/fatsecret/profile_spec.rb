@@ -27,7 +27,7 @@ describe FatSecret do
     end
     
     it 'requests the correct resource' do
-      client.profile('639aa3c886b849d2811c09bb640ec2b3')
+      client.profile('3f57f9258ce64e3f8a55901a747b1370', '2e0324082acb4979950a8e8071f33c7a')
       a_get('profile.get').
         should have_been_made
     end
@@ -47,6 +47,19 @@ describe FatSecret do
         should have_been_made
     end
     
+  end
+
+  describe 'script_session_key' do
+    before do
+     stub_get('profile.request_script_session_key').
+       to_return(:body => fixture('script_session_key.json'), :headers => {:content_type => 'application/json; charset=utf-8'})
+    end
+
+    it 'requests the correct resource' do
+      client.script_session_key('3f57f9258ce64e3f8a55901a747b1370', '2e0324082acb4979950a8e8071f33c7a')
+      a_get('profile.request_script_session_key').
+        should have_been_made
+    end
   end
   
 end

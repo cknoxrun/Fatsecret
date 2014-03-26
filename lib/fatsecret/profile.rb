@@ -14,10 +14,11 @@ class FatSecret
         get(query)
       end
       
-      def profile(oauth_token)
+      def profile(oauth_token, oauth_secret)
         query = {
           :method => 'profile.get',
-          :oauth_token => oauth_token
+          :oauth_token => oauth_token,
+          :oauth_secret => oauth_secret
         }
         get(query)
       end
@@ -30,6 +31,15 @@ class FatSecret
         get(query)
       end
       
+      def script_session_key(oauth_token, oauth_secret, cookie:'true')
+        query = {
+          :method => 'profile.request_script_session_key',
+          :oauth_token => oauth_token,
+          :oauth_secret => oauth_secret,
+          :cookie => cookie
+        }
+        get(query)
+      end
     end
     
   end
