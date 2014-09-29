@@ -7,3 +7,5 @@ coverage/*
 .DS_STOREvendor/ruby
 vendor/ruby
 vendor/cache
+fatsecret.sublime-project
+fatsecret.sublime-workspace
