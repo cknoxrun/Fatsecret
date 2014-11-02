@@ -1,5 +1,25 @@
 module FatSecret
   module FoodDiary
+    NUTRIENT_FIELDS = { 
+      calories: 'kcal',
+      carbohydrate: 'grams',
+      protein: 'grams',
+      fat: 'grams',
+      saturated_fat: 'grams', 
+      polyunsaturated_fat: 'grams',
+      monounsaturated_fat: 'grams',
+      trans_fat: 'grams',
+      cholesterol: 'milligrams', 
+      sodium: 'milligrams',
+      potassium: 'milligrams',
+      fiber: 'grams',
+      sugar: 'grams',
+      vitamin_a: '% DRI',
+      vitamin_c: '% DRI', 
+      calcium: '% DRI',
+      iron: '% DRI'
+    }
+
     def self.entries_for_day(user, date: Date.today)
       query = {
         method: 'food_entries.get',
@@ -40,10 +60,12 @@ module FatSecret
     end
 
     def self.nutrient_fields
-      [:calories, :carbohydrate, :protein, :fat, :saturated_fat, 
-       :polyunsaturated_fat, :monounsaturated_fat, :trans_fat, :cholesterol, 
-       :sodium, :potassium, :fiber, :sugar, :vitamin_a, :vitamin_c, 
-       :calcium, :iron]
+      NUTRIENT_FIELDS.keys
+    end
+
+    def self.nutrient_field_units(field)
+      raise "invalid field #{field} - no units" if NUTRIENT_FIELDS[field.to_sym].nil?
+      NUTRIENT_FIELDS[field.to_sym]
     end
   end
 end
